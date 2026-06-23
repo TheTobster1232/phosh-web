@@ -1,10 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Phosh in Browser</title>
-  </head>
-  <body>
-    <iframe src="https://novnc.com/noVNC/vnc.html" style="border:none;width:100vw;height:100vh;"></iframe>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>Auto‑Connect VNC</title>
+  <script src="https://cdn.jsdelivr.net/npm/@novnc/novnc/core/rfb.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+    #screen {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<div id="screen"></div>
+
+<script>
+  const rfb = new RFB(
+    document.getElementById('screen'),
+    "wss://glorious-engine-x55vrrrxgpq6h9pv6-5901.app.github.dev",
+    { credentials: { password: "123456" } }
+  );
+
+  rfb.viewOnly = false;
+  rfb.scaleViewport = true;
+  rfb.resizeSession = true;
+</script>
+
+</body>
 </html>
